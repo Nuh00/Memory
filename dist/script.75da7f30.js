@@ -121,27 +121,22 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 var cards = document.querySelectorAll('.card');
 var firstCard = null;
 var secondCard = null;
+var parentCard = null;
+var parentCard2 = null;
 var cardsArr = [];
 cards.forEach(function (card) {
   card.addEventListener('click', function (e) {
     card.classList.remove('before');
     var itemID = card.dataset.itemId;
-    console.log(itemID);
     if (cardsArr.length === 0) {
       firstCard = e.target;
-      var parentCard = e.target.parentElement;
+      parentCard = e.target.closest('.card'); // assign to parentCard, not const parentCard
       cardsArr.push("a");
-      firstClick(parentCard);
-      return;
     } else if (cardsArr.length === 1) {
       secondCard = e.target;
-      var parentCard2 = e.target.parentElement;
+      parentCard2 = e.target.closest('.card'); // assign to parentCard2, not const parentCard2
       cardsArr.push("b");
-      secondClick(parentCard2);
-      return;
-    }
-    if (cardsArr.length === 2) {
-      checkMatch(firstCard, secondCard);
+      checkMatch(parentCard, parentCard2);
       cardsArr.pop();
       cardsArr.pop();
     }
@@ -155,9 +150,8 @@ function secondClick(parentCard2) {
   console.log(parentCard2);
   return parentCard2;
 }
-function checkMatch(firstClick, secondClick) {
-  console.log(firstClick);
-  console.log(secondClick);
+function checkMatch(x, y) {
+  console.log(x, y);
 }
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -184,7 +178,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55150" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50369" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

@@ -2,6 +2,8 @@ const cards = document.querySelectorAll('.card');
 
 let firstCard = null;
 let secondCard = null;
+let parentCard = null;
+let parentCard2 = null;
 const cardsArr = []
 
 cards.forEach(card => {
@@ -9,35 +11,20 @@ cards.forEach(card => {
         
         card.classList.remove('before');
         const itemID = card.dataset.itemId
-        console.log(itemID);
 
         if (cardsArr.length === 0) {
-             firstCard = e.target;
-            const parentCard = e.target.parentElement;
-            cardsArr.push("a")
-            firstClick(parentCard)
-
-            return
-
-           
+            firstCard = e.target;
+            parentCard = e.target.closest('.card'); // assign to parentCard, not const parentCard
+            cardsArr.push("a");
+            
         }
         else if (cardsArr.length === 1) {
             secondCard = e.target;
-            const parentCard2 = e.target.parentElement;
-            cardsArr.push("b")
-            secondClick(parentCard2)
-
-            
-            return
-            
-            
-            
-        }
-
-        if (cardsArr.length === 2) {
-            checkMatch(firstCard, secondCard)
-            cardsArr.pop()
-            cardsArr.pop()
+            parentCard2 = e.target.closest('.card'); // assign to parentCard2, not const parentCard2
+            cardsArr.push("b");
+            checkMatch(parentCard, parentCard2);
+            cardsArr.pop();
+            cardsArr.pop();
         }
         
 
@@ -64,9 +51,8 @@ function secondClick(parentCard2) {
 }
 
 
-function checkMatch(firstClick, secondClick) {
-    console.log(firstClick);
-    console.log(secondClick);
-
+function checkMatch(x,y) {
+    console.log(x,y);
+    
     
 }
