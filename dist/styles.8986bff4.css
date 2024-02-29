@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px; /* This will create a 1px gap between grid items */
+    width: 600px;
+}
+.card img {
+    width: 100%; /* Adjust as needed */
+    height: 100%; /* Adjust as needed */
+    object-fit: cover; /* This line ensures that the aspect ratio of the images is maintained */
+    opacity: 100%;
+}
+
+.card.before img {
+    opacity: 0;
+}
+
+.card.before {
+    background-color: green;
+    border: 1px solid black;
+}
+
+
+
+
+/*# sourceMappingURL=/styles.8986bff4.css.map */
