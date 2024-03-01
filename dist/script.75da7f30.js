@@ -119,6 +119,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"script.js":[function(require,module,exports) {
 var cards = document.querySelectorAll('.card');
+var score = document.querySelector('.score span');
+var attemps = document.querySelector('.attemps span');
 var firstCard = null;
 var secondCard = null;
 var parentCard = null;
@@ -150,8 +152,21 @@ function secondClick(parentCard2) {
   console.log(parentCard2);
   return parentCard2;
 }
-function checkMatch(x, y) {
-  console.log(x, y);
+function checkMatch(card1, card2) {
+  if (card1.dataset.itemId === card2.dataset.itemId) {
+    score.textContent = parseInt(score.textContent) + 1;
+    if (score.textContent === "3") {
+      setTimeout(function () {
+        alert("You win!");
+      }, 500);
+    }
+  } else {
+    setTimeout(function () {
+      card1.classList.add('before');
+      card2.classList.add('before');
+    }, 500);
+    attemps.textContent = parseInt(attemps.textContent) + 1;
+  }
 }
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -178,7 +193,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50369" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50864" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

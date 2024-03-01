@@ -1,4 +1,7 @@
 const cards = document.querySelectorAll('.card');
+const score = document.querySelector('.score span');
+const attemps = document.querySelector('.attemps span');
+
 
 let firstCard = null;
 let secondCard = null;
@@ -51,8 +54,27 @@ function secondClick(parentCard2) {
 }
 
 
-function checkMatch(x,y) {
-    console.log(x,y);
+function checkMatch(card1,card2) {
+        
+    
+        if(card1.dataset.itemId === card2.dataset.itemId ) {
+            score.textContent = parseInt(score.textContent) + 1;
+            if(score.textContent === "3") {
+                setTimeout(() => {
+                    alert("You win!");
+                }, 500);
+            }
+        }
+        else {
+           setTimeout(() => {
+            card1.classList.add('before');
+            card2.classList.add('before');
+           }, 500);
+            attemps.textContent = parseInt(attemps.textContent) + 1;
+    }
+    
     
     
 }
+
+
